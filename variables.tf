@@ -162,7 +162,7 @@ variable "security_group_use_name_prefix" {
 }
 
 variable "security_group_rules" {
-  type = list(any)
+  type    = list(any)
   default = [
     {
       type        = "egress"
@@ -216,4 +216,10 @@ variable "instance_profile" {
   type        = string
   description = "A pre-defined profile to attach to the instance (default is to build our own)"
   default     = ""
+}
+
+variable "additional_iam_policy_arns" {
+  type        = list(string)
+  description = "Additional policies to attach to AWS IAM Role associated with the instance"
+  default     = []
 }

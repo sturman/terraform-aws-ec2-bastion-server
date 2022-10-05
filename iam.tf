@@ -26,6 +26,12 @@ resource "aws_iam_role_policy_attachment" "this" {
   role       = aws_iam_role.default[0].id
 }
 
+resource "aws_iam_role_policy_attachment" "additional" {
+  for_each   = toset(var.additional_iam_policy_arns)
+  policy_arn = each.key
+  role       = aws_iam_role.default[0].id
+}
+
 data "aws_iam_policy_document" "default" {
   statement {
     sid = ""
